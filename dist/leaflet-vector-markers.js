@@ -178,6 +178,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      div.innerHTML = '<svg width="' + options.iconSize[0] + 'px" height="' + options.iconSize[1] + 'px" viewBox="' + options.viewBox + '" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="' + pin_path + '" fill="' + options.markerColor + '"></path></svg>';
 
+				if (options.extraDivClasses === 'track-marker-id') {
+					div.innerHTML = '<div class="track-name-wrapper"><div class="track-name-elem">'+options.trackName+'</div></div>' + div.innerHTML
+				}
+
 	      if (options.icon) {
 	        div.appendChild(this._createInner());
 	      }
@@ -230,6 +234,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var options = this.options;
 	      var size = _leaflet2.default.point(options[name === 'shadow' ? 'shadowSize' : 'iconSize']);
 	      var anchor = void 0;
+				var trackNameHeight = 20;
 
 	      if (name === 'shadow') {
 	        anchor = _leaflet2.default.point(options.shadowAnchor || options.iconAnchor);
@@ -242,11 +247,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      img.className = 'vector-marker-' + name + ' ' + options.className;
 	      if (anchor) {
 	        img.style.marginLeft = -anchor.x + 'px';
-	        img.style.marginTop = -anchor.y + 'px';
+	        img.style.marginTop = -(anchor.y + trackNameHeight) + 'px';
 	      }
 	      if (size) {
 	        img.style.width = size.x + 'px';
-	        img.style.height = size.y + 'px';
+	        img.style.height = (size.y + trackNameHeight) + 'px';
 	      }
 	    }
 	  }]);

@@ -40,7 +40,7 @@ Version: 0.0.6
 
 .vector-marker i {
   position: absolute;
-  top: 8px;
+  top: 28px;
   left: 0;
   width: 32px;
   color: #333;
@@ -57,4 +57,15 @@ Version: 0.0.6
 
 .vector-marker .icon-white {
   color: #fff;
+}
+
+.track-name-wrapper {
+  margin:0 -999px;
+  text-align: center;
+
+  .track-name-elem {
+    display: inline-block;
+    width: 70px;
+    height: 20px;
+  }
 }
