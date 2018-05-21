@@ -62,15 +62,14 @@ Version: 0.0.6
 .track-name-wrapper {
   margin:0 -999px;
   text-align: center;
+}
 
-  .track-name-elem {
-    display: inline-block;
-    width: 70px;
-    height: 20px;
-    color: #000;
-    text-shadow: -1px -1px 0px #fff,
-    1px -1px 2px #fff,
-    -1px 1px 0 #fff,
-    1px 1px 0 #fff;
-  }
+
+.track-name-elem {
+  display: inline-block;
+  color: #000;
+  text-shadow: -1px -1px 0px #fff,
+  1px -1px 2px #fff,
+  -1px 1px 0 #fff,
+  1px 1px 0 #fff;
 }
