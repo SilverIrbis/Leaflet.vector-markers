@@ -33,7 +33,7 @@ export default class Icon extends Leaflet.Icon {
 
     div.innerHTML = `<svg width="${options.iconSize[0]}px" height="${options.iconSize[1]}px" viewBox="${options.viewBox}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="${pin_path}" fill="${options.markerColor}"></path></svg>`
 
-    if (options.extraDivClasses === 'track-marker-id') {
+    if (options.extraDivClasses === 'track-marker') {
 			div.innerHTML = '<div class="track-name-wrapper"><div class="track-name-elem">'+options.trackName+'</div></div>' + div.innerHTML
 		}
 
