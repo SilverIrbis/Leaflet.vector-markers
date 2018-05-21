@@ -99,7 +99,7 @@ export default class Icon extends Leaflet.Icon {
     img.className = 'vector-marker-' + name + ' ' + options.className
     if (anchor) {
       img.style.marginLeft = (-anchor.x) + 'px'
-      img.style.marginTop = (-(anchor.y + trackNameHeight)) + 'px'
+      img.style.marginTop = (-(anchor.y + (trackNameHeight - 2))) + 'px'
     }
     if (size) {
       img.style.width = size.x + 'px'
