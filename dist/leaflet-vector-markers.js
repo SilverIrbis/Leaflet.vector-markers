@@ -142,7 +142,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  iconAnchor: [15, 50],
 	  popupAnchor: [2, -40],
 	  shadowAnchor: [39, 45],
-	  shadowSize: [54, 51],
+	  shadowSize: [0, 0],
 	  className: 'vector-marker',
 	  prefix: 'fa',
 	  spinClass: 'fa-spin',
@@ -175,10 +175,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var div = oldIcon && oldIcon.tagName === 'DIV' ? oldIcon : document.createElement('div');
 	      var options = this.options;
 	      var pin_path = options.map_pin || mapPin;
+	      var isTrack = options.extraDivClasses === 'track-marker'
 
-	      div.innerHTML = '<svg width="' + options.iconSize[0] + 'px" height="' + options.iconSize[1] + 'px" viewBox="' + options.viewBox + '" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="' + pin_path + '" fill="' + options.markerColor + '"></path></svg>';
+		  options.translate = options.translate || '1,1';
+		  options.scale = options.scale || '1';
+		  options.style = options.style || '';
 
-				if (options.extraDivClasses === 'track-marker') {
+			div.innerHTML = '<svg width="' + options.iconSize[0] + 'px" height="' + options.iconSize[1] + 'px" viewBox="' + options.viewBox + '" style="' + options.style + 'transform: scale(' + options.scale + ') translate(' + options.translate + ')" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="' + pin_path + '" fill="' + options.markerColor + '" style="stroke:' + options.markerColor + '"></path></svg>';
+
+				if (isTrack) {
 					div.innerHTML = '<div class="track-name-wrapper"><div class="track-name-elem">'+options.trackName+'</div></div>' + div.innerHTML
 				}
 
@@ -187,8 +192,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      options.className += options.className.length > 0 ? ' ' + options.extraDivClasses : options.extraDivClasses;
-	      this._setIconStyles(div, 'icon');
-	      this._setIconStyles(div, 'icon-' + options.markerColor);
+	      this._setIconStyles(div, 'icon', isTrack);
+	      this._setIconStyles(div, 'icon-' + options.markerColor, isTrack);
 	      return div;
 	    }
 	  }, {
@@ -230,11 +235,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }, {
 	    key: '_setIconStyles',
-	    value: function _setIconStyles(img, name) {
+	    value: function _setIconStyles(img, name, isTrack) {
 	      var options = this.options;
 	      var size = _leaflet2.default.point(options[name === 'shadow' ? 'shadowSize' : 'iconSize']);
 	      var anchor = void 0;
-				var trackNameHeight = 20;
+				var trackNameHeight = isTrack ? 20 : 0;
+				var trackNameHeightFix = isTrack ? 18 : 0;
 
 	      if (name === 'shadow') {
 	        anchor = _leaflet2.default.point(options.shadowAnchor || options.iconAnchor);
@@ -247,7 +253,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      img.className = 'vector-marker-' + name + ' ' + options.className;
 	      if (anchor) {
 	        img.style.marginLeft = -anchor.x + 'px';
-	        img.style.marginTop = -(anchor.y + (trackNameHeight - 2)) + 'px';
+	        img.style.marginTop = -(anchor.y + trackNameHeightFix) + 'px';
 	      }
 	      if (size) {
 	        img.style.width = size.x + 'px';
