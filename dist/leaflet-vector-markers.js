@@ -251,6 +251,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        anchor = size.divideBy(2, true);
 	      }
 	      img.className = 'vector-marker-' + name + ' ' + options.className;
+        if (isTrack) $(img).find('i').css('top', '28px')
 	      if (anchor) {
 	        img.style.marginLeft = -anchor.x + 'px';
 	        img.style.marginTop = -(anchor.y + trackNameHeightFix) + 'px';
