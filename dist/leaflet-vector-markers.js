@@ -235,32 +235,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }, {
 	    key: '_setIconStyles',
-	    value: function _setIconStyles(img, name, isTrack) {
-	      var options = this.options;
-	      var size = _leaflet2.default.point(options[name === 'shadow' ? 'shadowSize' : 'iconSize']);
-	      var anchor = void 0;
-				var trackNameHeight = isTrack ? 20 : 0;
-				var trackNameHeightFix = isTrack ? 18 : 0;
+      value: function _setIconStyles(img, name, isTrack) {
+        var options = this.options;
+        var size = _leaflet2.default.point(options[name === 'shadow' ? 'shadowSize' : 'iconSize']);
+        var anchor = void 0;
+        var trackNameHeight = isTrack ? 20 : 0;
+        var trackNameHeightFix = isTrack ? 18 : 0;
 
-	      if (name === 'shadow') {
-	        anchor = _leaflet2.default.point(options.shadowAnchor || options.iconAnchor);
-	      } else {
-	        anchor = _leaflet2.default.point(options.iconAnchor);
-	      }
-	      if (!anchor && size) {
-	        anchor = size.divideBy(2, true);
-	      }
-	      img.className = 'vector-marker-' + name + ' ' + options.className;
+        if (name === 'shadow') {
+          anchor = _leaflet2.default.point(options.shadowAnchor || options.iconAnchor);
+        } else {
+          anchor = _leaflet2.default.point(options.iconAnchor);
+        }
+        if (!anchor && size) {
+          anchor = size.divideBy(2, true);
+        }
+        img.className = 'vector-marker-' + name + ' ' + options.className;
         if (isTrack) $(img).find('i').css('top', '28px')
-	      if (anchor) {
-	        img.style.marginLeft = -anchor.x + 'px';
-	        img.style.marginTop = -(anchor.y + trackNameHeightFix) + 'px';
-	      }
-	      if (size) {
-	        img.style.width = size.x + 'px';
-	        img.style.height = (size.y + trackNameHeight) + 'px';
-	      }
-	    }
+        if (anchor) {
+          img.style.marginLeft = -anchor.x + 'px';
+          img.style.marginTop = -(anchor.y + trackNameHeightFix) + 'px';
+        }
+        if (size) {
+          img.style.width = size.x + 'px';
+          img.style.height = (+size.y + +trackNameHeight) + 'px';
+        }
+      }
 	  }]);
 
 	  return Icon;
